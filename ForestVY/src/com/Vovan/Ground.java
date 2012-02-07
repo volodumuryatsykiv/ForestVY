@@ -1,12 +1,5 @@
 package com.Vovan;
 
-//Ground.class
-//-properties
-//-change properties
-//-add / remove tree (Tree.class)
-//-remove all tree (Tree.class)
-//-add a couple of trees (Tree.class)
-
 public class Ground
 {
 	private float fertility;

@@ -1,33 +1,7 @@
 package com.Vovan;
 
-//-basic properties
-//-basic methods
-public class Leaf
+public abstract class Leaf
 {
-	private String leafColor = "";
-
-	public Leaf(String theLeafColor)
-	{
-		this.leafColor = theLeafColor;
-	}
-
-	public Leaf()
-	{
-		this("");
-	}
-
-	public void setLeafColor(String color)
-	{
-		this.leafColor = color;
-	}
-
-	public String getLeafColor()
-	{
-		return this.leafColor;
-	}
-
-	public void print()
-	{
-		System.out.println("Leaf is " + leafColor);
-	}
+	// I really don't know, what method add to this class
+	public abstract void draw();
 }
