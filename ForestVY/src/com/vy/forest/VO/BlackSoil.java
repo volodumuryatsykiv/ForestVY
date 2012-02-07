@@ -1,18 +1,21 @@
-package com.Vovan;
+package com.vy.forest.VO;
 
-public class Ground
+import com.vy.forest.abs.Ground;
+import com.vy.forest.abs.Tree;
+
+public class BlackSoil extends Ground
 {
 	private float fertility;
 	private String type;
 	private Tree arr[] = new Tree[0];
 
-	public Ground(float fertility, String type)
+	public BlackSoil(float fertility, String type)
 	{
 		this.fertility = fertility;
 		this.type = type;
 	}
 
-	public Ground()
+	public BlackSoil()
 	{
 		this(0, "");
 	}
@@ -81,7 +84,7 @@ public class Ground
 		arr = new Tree[0];
 	}
 
-	public void removeTree(int id, Tree tree)
+	public void removeTree(int id)
 	{
 		int j = 0;
 		Tree tempArr[] = new Tree[arr.length - 1];

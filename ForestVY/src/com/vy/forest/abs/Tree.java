@@ -1,6 +1,6 @@
-package com.Vovan;
+package com.vy.forest.abs;
 
-abstract class Tree
+public abstract class Tree
 {
 	public abstract void addLeaf(Leaf leaf);
 

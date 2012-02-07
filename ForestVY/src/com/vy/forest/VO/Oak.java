@@ -1,4 +1,7 @@
-package com.Vovan;
+package com.vy.forest.VO;
+
+import com.vy.forest.abs.Leaf;
+import com.vy.forest.abs.Tree;
 
 public class Oak extends Tree
 {
@@ -9,8 +12,8 @@ public class Oak extends Tree
 	private int id = 0;
 	private Leaf arr[] = new OakLeaf[0];
 
-	public Oak(String inName, String inView, float inHeight,
-			boolean isFruit, int inId)
+	public Oak(String inName, String inView, float inHeight, boolean isFruit,
+			int inId)
 	{
 		this.name = inName;
 		this.view = inView;
@@ -101,7 +104,7 @@ public class Oak extends Tree
 			arr[i] = tempArr[i];
 		}
 
-		arr[tempArr.length - 1] = new OakLeaf("Green", ++id);
+		arr[tempArr.length - 1] = new OakLeaf("Green", tempArr.length - 1);
 	}
 
 	@Override
@@ -121,9 +124,9 @@ public class Oak extends Tree
 			arr[i] = tempArr[i];
 		}
 
-		arr[tempArr.length - 2] = new OakLeaf("Green", ++id);
+		arr[tempArr.length - 2] = new OakLeaf("Green", tempArr.length - 2);
 
-		arr[tempArr.length - 1] = new OakLeaf("Green", ++id);
+		arr[tempArr.length - 1] = new OakLeaf("Green", tempArr.length - 1);
 	}
 
 	@Override
@@ -168,5 +171,11 @@ public class Oak extends Tree
 		System.out.println("Height is " + this.height);
 		System.out.println("Fruity is " + this.isFruit);
 		System.out.println("ID is " + this.id);
+
+		System.out.println("Trere are that leaves on this tree: ");
+		for (int i = 0; i < arr.length; i++)
+		{
+			arr[i].draw();
+		}
 	}
 }

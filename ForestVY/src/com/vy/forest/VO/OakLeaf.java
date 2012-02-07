@@ -1,4 +1,6 @@
-package com.Vovan;
+package com.vy.forest.VO;
+
+import com.vy.forest.abs.Leaf;
 
 public class OakLeaf extends Leaf
 {
@@ -49,5 +51,6 @@ public class OakLeaf extends Leaf
 		System.out.println("Color is " + this.leafColor);
 		System.out.println("Size is " + this.size);
 		System.out.println("ID is " + this.id);
+		System.out.println();
 	}
 }
