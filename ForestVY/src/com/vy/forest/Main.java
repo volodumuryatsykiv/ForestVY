@@ -1,11 +1,11 @@
 package com.vy.forest;
 
-import com.vy.forest.VO.BlackSoil;
-import com.vy.forest.VO.Oak;
-import com.vy.forest.VO.OakLeaf;
 import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Leaf;
 import com.vy.forest.abs.Tree;
+import com.vy.forest.vo.BlackSoil;
+import com.vy.forest.vo.Oak;
+import com.vy.forest.vo.OakLeaf;
 
 public class Main
 {

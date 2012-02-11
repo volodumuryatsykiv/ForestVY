@@ -1,4 +1,4 @@
-package com.vy.forest.VO;
+package com.vy.forest.vo;
 
 import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Tree;
