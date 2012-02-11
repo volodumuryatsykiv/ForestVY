@@ -47,7 +47,7 @@ public class Oak extends Tree
 		this.isFruit = fruity;
 	}
 
-	public boolean getFruit()
+	public boolean isFruit()
 	{
 		return this.isFruit;
 	}
@@ -82,13 +82,24 @@ public class Oak extends Tree
 		return this.view;
 	}
 
+	public void setId(int inId)
+	{
+		this.id = inId;
+	}
+
+	@Override
+	public int getId()
+	{
+		return this.id;
+	}
+
 	public int getLeafCount()
 	{
 		return arr.length;
 	}
 
 	@Override
-	public void addLeaf(Leaf leaf)
+	public void addLeaf(Leaf[] leaf)
 	{
 		Leaf tempArr[] = new OakLeaf[arr.length + 1];
 
@@ -138,29 +149,33 @@ public class Oak extends Tree
 	@Override
 	public void removeLeaf(int id)
 	{
-		int j = 0;
-		Leaf tempArr[] = new OakLeaf[arr.length - 1];
+		int leafCount = 0;
+		boolean isRemoved = false;
+		Leaf tempArr[] = new OakLeaf[arr.length];
 
-		if (id > arr.length)
+		for (int i = 0; i < arr.length; i++)
 		{
-			System.out.println("false!!!");
-		} else
+			if (arr[i].getId() == id)
+			{
+				isRemoved = true;
+			} else
+			{
+				tempArr[leafCount] = arr[i];
+				leafCount++;
+			}
+		}
+
+		arr = new OakLeaf[leafCount];
+
+		for (int i = 0; i < arr.length; i++)
 		{
-			for (int i = 0; i < arr.length; i++)
-			{
-				if (i != id - 1)
-				{
-					tempArr[j] = arr[i];
-					j++;
-				}
-			}
+			arr[i] = tempArr[i];
+		}
 
-			arr = new OakLeaf[tempArr.length];
-
-			for (int i = 0; i < arr.length; i++)
-			{
-				arr[i] = tempArr[i];
-			}
+		if (!isRemoved)
+		{
+			System.out.println("Leaf with id = " + id + " not found!!!");
+			System.out.println();
 		}
 	}
 

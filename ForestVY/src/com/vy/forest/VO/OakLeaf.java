@@ -35,6 +35,17 @@ public class OakLeaf extends Leaf
 		return this.size;
 	}
 
+	public void setId(int inId)
+	{
+		this.id = inId;
+	}
+
+	@Override
+	public int getId()
+	{
+		return this.id;
+	}
+
 	public void setLeafColor(String inLeafColor)
 	{
 		this.leafColor = inLeafColor;

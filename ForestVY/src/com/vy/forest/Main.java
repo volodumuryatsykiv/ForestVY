@@ -1,30 +1,36 @@
 package com.vy.forest;
 
+import com.vy.forest.VO.BlackSoil;
 import com.vy.forest.VO.Oak;
 import com.vy.forest.VO.OakLeaf;
+import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Leaf;
+import com.vy.forest.abs.Tree;
 
 public class Main
 {
 
 	public static void main(String[] args)
 	{
-		Oak oak = new Oak("Aok", "Leafs", 10f, false, 10); // if Tree oak -
-															// method draw &
-															// getLeafCount
-															// aren't available
+		Tree[] oak = new Oak[0];
+		Leaf[] oakLeaf = new OakLeaf[0];
 
-		Leaf[] leaf = new OakLeaf[0];
+		Ground ground = new BlackSoil();
 
-		oak.addCoupleLeaf(leaf);
-		oak.addCoupleLeaf(leaf);
+		ground.addCoupleTree(oak);
 
-		System.out.println(oak.getLeafCount());// this method
+		ground.draw();
 
-		oak.draw(); // this method
+		oak[0].addCoupleLeaf(oakLeaf);
+		oak[0].addCoupleLeaf(oakLeaf);
 
-		// I have some questions about this project... what questions - I call
-		// or write you in skype about them
+		// System.out.println(oak.getLeafCount());// this method
+
+		// oak.draw(); // this method
+
+		System.out.println("After removal: ");
+		System.out.println();
+		oak[0].removeLeaf(5);
+		oak[0].draw();
 	}
-
 }

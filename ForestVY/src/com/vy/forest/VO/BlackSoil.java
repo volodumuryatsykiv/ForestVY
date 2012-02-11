@@ -40,7 +40,8 @@ public class BlackSoil extends Ground
 		return this.type;
 	}
 
-	public void addTree(Tree tree)
+	@Override
+	public void addTree(Tree[] tree)
 	{
 		Tree tempArr[] = new Tree[arr.length + 1];
 
@@ -56,10 +57,12 @@ public class BlackSoil extends Ground
 			arr[i] = tempArr[i];
 		}
 
-		arr[tempArr.length - 1] = tree;
+		arr[tempArr.length - 1] = new Oak("Oak", "Leafs", 10.0f, false,
+				tempArr.length - 1);
 	}
 
-	public void addCoupleTree(Tree tree)
+	@Override
+	public void addCoupleTree(Tree[] tree)
 	{
 		Tree tempArr[] = new Tree[arr.length + 2];
 
@@ -75,40 +78,48 @@ public class BlackSoil extends Ground
 			arr[i] = tempArr[i];
 		}
 
-		arr[tempArr.length - 2] = tree;
-		arr[tempArr.length - 1] = tree;
+		arr[tempArr.length - 2] = new Oak("Oak", "Leafs", 10.0f, false,
+				tempArr.length - 2);
+		arr[tempArr.length - 1] = new Oak("Oak", "Leafs", 10.0f, false,
+				tempArr.length - 1);
 	}
 
+	@Override
 	public void removeAllTree()
 	{
 		arr = new Tree[0];
 	}
 
+	@Override
 	public void removeTree(int id)
 	{
-		int j = 0;
-		Tree tempArr[] = new Tree[arr.length - 1];
+		int treeCount = 0;
+		boolean isRemoved = false;
+		Tree tempArr[] = new Tree[arr.length];
 
-		if (id > arr.length)
+		for (int i = 0; i < arr.length; i++)
 		{
-			System.out.println("false!!!");
-		} else
+			if (arr[i].getId() == id)
+			{
+				isRemoved = true;
+			}
+			{
+				tempArr[treeCount] = arr[i];
+				treeCount++;
+			}
+		}
+
+		arr = new Tree[treeCount];
+
+		for (int i = 0; i < arr.length; i++)
 		{
-			for (int i = 0; i < arr.length; i++)
-			{
-				if (i != id - 1)
-				{
-					tempArr[j] = arr[i];
-					j++;
-				}
-			}
+			arr[i] = tempArr[i];
+		}
 
-			arr = new Tree[tempArr.length];
-
-			for (int i = 0; i < arr.length; i++)
-			{
-				arr[i] = tempArr[i];
-			}
+		if (!isRemoved)
+		{
+			System.out.println("Leaf with id = " + id + " not found!!!");
+			System.out.println();
 		}
 	}
 
@@ -117,9 +128,12 @@ public class BlackSoil extends Ground
 		return this.arr.length;
 	}
 
-	public void print()
+	public void draw()
 	{
-		System.out.println("Ground: type - " + type + ", fertility - "
-				+ fertility + ".");
+		System.out.println("Amount tree = " + (arr.length - 1));
+		for (int i = 0; i < arr.length; i++)
+		{
+			System.out.println("Tree id = ");
+		}
 	}
 }
