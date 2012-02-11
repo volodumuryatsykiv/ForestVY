@@ -18,19 +18,22 @@ public class Main
 		Ground ground = new BlackSoil();
 
 		ground.addCoupleTree(oak);
-
 		ground.draw();
 
-		oak[0].addCoupleLeaf(oakLeaf);
-		oak[0].addCoupleLeaf(oakLeaf);
+		oak = new Oak[ground.getTreeCount()];
+		for (int i = 0; i < ground.getTreeCount(); i++)
+		{
+			oak[i] = ground.getTree(i);
+		}
 
-		// System.out.println(oak.getLeafCount());// this method
+		System.out.println("Oak.length = " + oak.length);
 
-		// oak.draw(); // this method
+		oak[1].addCoupleLeaf(oakLeaf);
+		oak[1].addCoupleLeaf(oakLeaf);
 
 		System.out.println("After removal: ");
 		System.out.println();
-		oak[0].removeLeaf(5);
-		oak[0].draw();
+		oak[1].removeLeaf(2);
+		oak[1].draw();
 	}
 }

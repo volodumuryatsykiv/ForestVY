@@ -11,4 +11,8 @@ public abstract class Ground
 	public abstract void removeTree(int id);
 
 	public abstract void draw();
+
+	public abstract int getTreeCount();
+
+	public abstract Tree getTree(int k);
 }

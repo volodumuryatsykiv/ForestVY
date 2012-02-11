@@ -179,6 +179,7 @@ public class Oak extends Tree
 		}
 	}
 
+	@Override
 	public void draw()
 	{
 		System.out.println("Name is " + this.name);
@@ -187,7 +188,7 @@ public class Oak extends Tree
 		System.out.println("Fruity is " + this.isFruit);
 		System.out.println("ID is " + this.id);
 
-		System.out.println("Trere are that leaves on this tree: ");
+		System.out.println("There are that leaves on this tree: ");
 		for (int i = 0; i < arr.length; i++)
 		{
 			arr[i].draw();

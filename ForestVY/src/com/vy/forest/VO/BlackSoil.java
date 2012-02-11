@@ -82,6 +82,13 @@ public class BlackSoil extends Ground
 				tempArr.length - 2);
 		arr[tempArr.length - 1] = new Oak("Oak", "Leafs", 10.0f, false,
 				tempArr.length - 1);
+
+		tree = new Oak[arr.length];
+
+		for (int i = 0; i < arr.length; i++)
+		{
+			tree[i] = arr[i];
+		}
 	}
 
 	@Override
@@ -128,12 +135,25 @@ public class BlackSoil extends Ground
 		return this.arr.length;
 	}
 
+	@Override
+	public Tree getTree(int k)
+	{
+		return arr[k];
+	}
+
+	@Override
+	public int getTreeCount()
+	{
+		return arr.length;
+	}
+
+	@Override
 	public void draw()
 	{
-		System.out.println("Amount tree = " + (arr.length - 1));
+		System.out.println("Amount tree = " + arr.length);
 		for (int i = 0; i < arr.length; i++)
 		{
-			System.out.println("Tree id = ");
+			System.out.println("Tree id = " + arr[i].getId());
 		}
 	}
 }
