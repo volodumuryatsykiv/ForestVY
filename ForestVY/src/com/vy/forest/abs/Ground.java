@@ -1,10 +1,12 @@
 package com.vy.forest.abs;
 
+import java.util.ArrayList;
+
 public abstract class Ground
 {
-	public abstract void addTree(Tree[] tree);
+	public abstract void addTree(ArrayList<Tree> list);
 
-	public abstract void addCoupleTree(Tree tree[]);
+	public abstract void addCoupleTree(ArrayList<Tree> list);
 
 	public abstract void removeAllTree();
 

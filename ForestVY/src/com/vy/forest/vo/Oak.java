@@ -1,5 +1,7 @@
 package com.vy.forest.vo;
 
+import java.util.ArrayList;
+
 import com.vy.forest.abs.Leaf;
 import com.vy.forest.abs.Tree;
 
@@ -10,7 +12,7 @@ public class Oak extends Tree
 	private float height;
 	private boolean isFruit;
 	private int id = 0;
-	private Leaf arr[] = new OakLeaf[0];
+	private final ArrayList<Leaf> LeafList = new ArrayList<Leaf>();
 
 	public Oak(String inName, String inView, float inHeight, boolean isFruit,
 			int inId)
@@ -93,83 +95,62 @@ public class Oak extends Tree
 		return this.id;
 	}
 
+	@Override
 	public int getLeafCount()
 	{
-		return arr.length;
+		return LeafList.size();
 	}
 
 	@Override
-	public void addLeaf(Leaf[] leaf)
+	public Leaf getLeaf(int i)
 	{
-		Leaf tempArr[] = new OakLeaf[arr.length + 1];
-
-		for (int i = 0; i < arr.length; i++)
-		{
-			tempArr[i] = arr[i];
-		}
-
-		arr = new OakLeaf[tempArr.length];
-
-		for (int i = 0; i < arr.length; i++)
-		{
-			arr[i] = tempArr[i];
-		}
-
-		arr[tempArr.length - 1] = new OakLeaf("Green", tempArr.length - 1);
+		return LeafList.get(i);
 	}
 
 	@Override
-	public void addCoupleLeaf(Leaf leaf[])
+	public void addLeaf(ArrayList<Leaf> list)
 	{
-		Leaf tempArr[] = new OakLeaf[arr.length + 2];
+		Leaf tempLeaf = new OakLeaf("Green", LeafList.size() + 1);
 
-		for (int i = 0; i < arr.length; i++)
-		{
-			tempArr[i] = arr[i];
-		}
+		list.add(tempLeaf);
+		LeafList.add(tempLeaf);
+	}
 
-		arr = new OakLeaf[tempArr.length];
+	@Override
+	public void addCoupleLeaf(ArrayList<Leaf> list)
+	{
+		Leaf tempLeaf = new OakLeaf("Green", LeafList.size() + 1);
 
-		for (int i = 0; i < arr.length; i++)
-		{
-			arr[i] = tempArr[i];
-		}
+		list.add(tempLeaf);
+		LeafList.add(tempLeaf);
 
-		arr[tempArr.length - 2] = new OakLeaf("Green", tempArr.length - 2);
+		tempLeaf = new OakLeaf("Green", LeafList.size() + 1);
 
-		arr[tempArr.length - 1] = new OakLeaf("Green", tempArr.length - 1);
+		list.add(tempLeaf);
+		LeafList.add(tempLeaf);
 	}
 
 	@Override
 	public void removeAllLeaf()
 	{
-		arr = new OakLeaf[0];
+		LeafList.clear();
 	}
 
 	@Override
 	public void removeLeaf(int id)
 	{
-		int leafCount = 0;
 		boolean isRemoved = false;
-		Leaf tempArr[] = new OakLeaf[arr.length];
+		Leaf tempLeaf = new OakLeaf();
 
-		for (int i = 0; i < arr.length; i++)
+		for (int i = 0; i < LeafList.size(); i++)
 		{
-			if (arr[i].getId() == id)
+			tempLeaf = LeafList.get(i);
+
+			if (tempLeaf.getId() == id)
 			{
 				isRemoved = true;
-			} else
-			{
-				tempArr[leafCount] = arr[i];
-				leafCount++;
+				LeafList.remove(i);
 			}
-		}
-
-		arr = new OakLeaf[leafCount];
-
-		for (int i = 0; i < arr.length; i++)
-		{
-			arr[i] = tempArr[i];
 		}
 
 		if (!isRemoved)
@@ -182,6 +163,8 @@ public class Oak extends Tree
 	@Override
 	public void draw()
 	{
+		Leaf tempLeaf = new OakLeaf();
+
 		System.out.println("Name is " + this.name);
 		System.out.println("View is " + this.view);
 		System.out.println("Height is " + this.height);
@@ -189,9 +172,17 @@ public class Oak extends Tree
 		System.out.println("ID is " + this.id);
 
 		System.out.println("There are that leaves on this tree: ");
-		for (int i = 0; i < arr.length; i++)
+
+		if (LeafList.size() == 0)
 		{
-			arr[i].draw();
+			System.out.println("No leaf in this tree");
+		} else
+		{
+			for (int i = 0; i < LeafList.size(); i++)
+			{
+				tempLeaf = LeafList.get(i);
+				tempLeaf.draw();
+			}
 		}
 	}
 }

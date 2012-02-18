@@ -1,5 +1,7 @@
 package com.vy.forest;
 
+import java.util.ArrayList;
+
 import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Leaf;
 import com.vy.forest.abs.Tree;
@@ -12,28 +14,44 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		Tree[] oak = new Oak[0];
-		Leaf[] oakLeaf = new OakLeaf[0];
-
 		Ground ground = new BlackSoil();
+		ArrayList<Tree> Oak = new ArrayList<Tree>();
+		ArrayList<Leaf> OakLeaf = new ArrayList<Leaf>();
+		Tree oak = new Oak();
+		Leaf oakLeaf = new OakLeaf();
 
-		ground.addCoupleTree(oak);
+		System.out.println("Add 3 leaf");
+		oak.addLeaf(OakLeaf);
+		oak.addCoupleLeaf(OakLeaf);
+		System.out.println("Count leaf = " + oak.getLeafCount());
+		System.out.println();
+		oak.draw();
+
+		System.out.println("After removed leaf with 2 id: ");
+		oak.removeLeaf(2);
+		oak.draw();
+
+		System.out.println("Removed all leaf: ");
+		oak.removeAllLeaf();
+		oak.draw();
+
+		System.out.println();
+		System.out.println();
+
+		System.out.println("Ground: ");
+		ground.addTree(Oak);
+		ground.addCoupleTree(Oak);
+		System.out.println("Count tree = " + ground.getTreeCount());
 		ground.draw();
 
-		oak = new Oak[ground.getTreeCount()];
-		for (int i = 0; i < ground.getTreeCount(); i++)
-		{
-			oak[i] = ground.getTree(i);
-		}
-
-		System.out.println("Oak.length = " + oak.length);
-
-		oak[1].addCoupleLeaf(oakLeaf);
-		oak[1].addCoupleLeaf(oakLeaf);
-
-		System.out.println("After removal: ");
 		System.out.println();
-		oak[1].removeLeaf(2);
-		oak[1].draw();
+		System.out.println("After removed tree with 2 id: ");
+		ground.removeTree(2);
+		ground.draw();
+
+		System.out.println();
+		System.out.println("Removed all tree: ");
+		ground.removeAllTree();
+		ground.draw();
 	}
 }

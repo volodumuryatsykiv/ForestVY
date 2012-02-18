@@ -1,5 +1,7 @@
 package com.vy.forest.vo;
 
+import java.util.ArrayList;
+
 import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Tree;
 
@@ -7,7 +9,7 @@ public class BlackSoil extends Ground
 {
 	private float fertility;
 	private String type;
-	private Tree arr[] = new Tree[0];
+	private final ArrayList<Tree> TreeList = new ArrayList<Tree>();
 
 	public BlackSoil(float fertility, String type)
 	{
@@ -41,86 +43,50 @@ public class BlackSoil extends Ground
 	}
 
 	@Override
-	public void addTree(Tree[] tree)
+	public void addTree(ArrayList<Tree> list)
 	{
-		Tree tempArr[] = new Tree[arr.length + 1];
+		Tree tempTree = new Oak("Oak", "Leafs", 10.0f, false,
+				TreeList.size() + 1);
 
-		for (int i = 0; i < arr.length; i++)
-		{
-			tempArr[i] = arr[i];
-		}
-
-		arr = new Tree[tempArr.length];
-
-		for (int i = 0; i < arr.length; i++)
-		{
-			arr[i] = tempArr[i];
-		}
-
-		arr[tempArr.length - 1] = new Oak("Oak", "Leafs", 10.0f, false,
-				tempArr.length - 1);
+		list.add(tempTree);
+		TreeList.add(tempTree);
 	}
 
 	@Override
-	public void addCoupleTree(Tree[] tree)
+	public void addCoupleTree(ArrayList<Tree> list)
 	{
-		Tree tempArr[] = new Tree[arr.length + 2];
+		Tree tempTree = new Oak("Oak", "Leafs", 10.0f, false,
+				TreeList.size() + 1);
 
-		for (int i = 0; i < arr.length; i++)
-		{
-			tempArr[i] = arr[i];
-		}
+		list.add(tempTree);
+		TreeList.add(tempTree);
 
-		arr = new Tree[tempArr.length];
+		tempTree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
 
-		for (int i = 0; i < arr.length; i++)
-		{
-			arr[i] = tempArr[i];
-		}
-
-		arr[tempArr.length - 2] = new Oak("Oak", "Leafs", 10.0f, false,
-				tempArr.length - 2);
-		arr[tempArr.length - 1] = new Oak("Oak", "Leafs", 10.0f, false,
-				tempArr.length - 1);
-
-		tree = new Oak[arr.length];
-
-		for (int i = 0; i < arr.length; i++)
-		{
-			tree[i] = arr[i];
-		}
+		list.add(tempTree);
+		TreeList.add(tempTree);
 	}
 
 	@Override
 	public void removeAllTree()
 	{
-		arr = new Tree[0];
+		TreeList.clear();
 	}
 
 	@Override
 	public void removeTree(int id)
 	{
-		int treeCount = 0;
 		boolean isRemoved = false;
-		Tree tempArr[] = new Tree[arr.length];
+		Tree tempTree = new Oak();
 
-		for (int i = 0; i < arr.length; i++)
+		for (int i = 0; i < TreeList.size(); i++)
 		{
-			if (arr[i].getId() == id)
+			tempTree = TreeList.get(i);
+			if (tempTree.getId() == id)
 			{
 				isRemoved = true;
+				TreeList.remove(i);
 			}
-			{
-				tempArr[treeCount] = arr[i];
-				treeCount++;
-			}
-		}
-
-		arr = new Tree[treeCount];
-
-		for (int i = 0; i < arr.length; i++)
-		{
-			arr[i] = tempArr[i];
 		}
 
 		if (!isRemoved)
@@ -130,30 +96,34 @@ public class BlackSoil extends Ground
 		}
 	}
 
-	public int getAmountTree()
-	{
-		return this.arr.length;
-	}
-
 	@Override
 	public Tree getTree(int k)
 	{
-		return arr[k];
+		return TreeList.get(k);
 	}
 
 	@Override
 	public int getTreeCount()
 	{
-		return arr.length;
+		return TreeList.size();
 	}
 
 	@Override
 	public void draw()
 	{
-		System.out.println("Amount tree = " + arr.length);
-		for (int i = 0; i < arr.length; i++)
+		Tree tempTree = new Oak();
+
+		if (TreeList.size() == 0)
 		{
-			System.out.println("Tree id = " + arr[i].getId());
+			System.out.println("In this ground no tree!!!");
+		} else
+		{
+			System.out.println("Amount tree = " + TreeList.size());
+			for (int i = 0; i < TreeList.size(); i++)
+			{
+				tempTree = TreeList.get(i);
+				System.out.println("Tree id = " + tempTree.getId());
+			}
 		}
 	}
 }
