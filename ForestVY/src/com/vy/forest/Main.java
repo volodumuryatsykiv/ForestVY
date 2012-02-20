@@ -1,7 +1,5 @@
 package com.vy.forest;
 
-import java.util.ArrayList;
-
 import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Leaf;
 import com.vy.forest.abs.Tree;
@@ -15,14 +13,14 @@ public class Main
 	public static void main(String[] args)
 	{
 		Ground ground = new BlackSoil();
-		ArrayList<Tree> Oak = new ArrayList<Tree>();
-		ArrayList<Leaf> OakLeaf = new ArrayList<Leaf>();
+		// ArrayList<Tree> Oak = new ArrayList<Tree>();
+		// ArrayList<Leaf> OakLeaf = new ArrayList<Leaf>();
 		Tree oak = new Oak();
 		Leaf oakLeaf = new OakLeaf();
 
 		System.out.println("Add 3 leaf");
-		oak.addLeaf(OakLeaf);
-		oak.addCoupleLeaf(OakLeaf);
+		oak.addLeaf(oakLeaf);
+		oak.addCoupleLeaf(oakLeaf);
 		System.out.println("Count leaf = " + oak.getLeafCount());
 		System.out.println();
 		oak.draw();
@@ -39,8 +37,8 @@ public class Main
 		System.out.println();
 
 		System.out.println("Ground: ");
-		ground.addTree(Oak);
-		ground.addCoupleTree(Oak);
+		ground.addTree(oak);
+		ground.addCoupleTree(oak);
 		System.out.println("Count tree = " + ground.getTreeCount());
 		ground.draw();
 

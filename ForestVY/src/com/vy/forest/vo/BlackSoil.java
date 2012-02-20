@@ -43,28 +43,19 @@ public class BlackSoil extends Ground
 	}
 
 	@Override
-	public void addTree(ArrayList<Tree> list)
+	public void addTree(Tree tree)
 	{
-		Tree tempTree = new Oak("Oak", "Leafs", 10.0f, false,
-				TreeList.size() + 1);
-
-		list.add(tempTree);
-		TreeList.add(tempTree);
+		tree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
+		TreeList.add(tree);
 	}
 
 	@Override
-	public void addCoupleTree(ArrayList<Tree> list)
+	public void addCoupleTree(Tree tree)
 	{
-		Tree tempTree = new Oak("Oak", "Leafs", 10.0f, false,
-				TreeList.size() + 1);
-
-		list.add(tempTree);
-		TreeList.add(tempTree);
-
-		tempTree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
-
-		list.add(tempTree);
-		TreeList.add(tempTree);
+		tree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
+		TreeList.add(tree);
+		tree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
+		TreeList.add(tree);
 	}
 
 	@Override

@@ -108,26 +108,21 @@ public class Oak extends Tree
 	}
 
 	@Override
-	public void addLeaf(ArrayList<Leaf> list)
+	public void addLeaf(Leaf leaf)
 	{
-		Leaf tempLeaf = new OakLeaf("Green", LeafList.size() + 1);
-
-		list.add(tempLeaf);
-		LeafList.add(tempLeaf);
+		leaf = new OakLeaf("Green", LeafList.size() + 1);
+		LeafList.add(leaf);
 	}
 
 	@Override
-	public void addCoupleLeaf(ArrayList<Leaf> list)
+	public void addCoupleLeaf(Leaf leaf)
 	{
-		Leaf tempLeaf = new OakLeaf("Green", LeafList.size() + 1);
-
-		list.add(tempLeaf);
-		LeafList.add(tempLeaf);
-
-		tempLeaf = new OakLeaf("Green", LeafList.size() + 1);
-
-		list.add(tempLeaf);
-		LeafList.add(tempLeaf);
+		leaf = new OakLeaf("Green", LeafList.size() + 1); // change id
+															// (LeafList.size()
+															// + 1)
+		LeafList.add(leaf);
+		leaf = new OakLeaf("Green", LeafList.size() + 1);
+		LeafList.add(leaf);
 	}
 
 	@Override
