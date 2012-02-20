@@ -1,6 +1,6 @@
 package com.vy.forest.vo;
 
-import com.vy.forest.abs.Leaf;
+import com.vy.forest.interfaces.Leaf;
 
 public class OakLeaf extends Leaf
 {

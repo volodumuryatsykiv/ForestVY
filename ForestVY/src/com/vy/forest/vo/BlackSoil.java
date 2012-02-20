@@ -3,8 +3,8 @@ package com.vy.forest.vo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vy.forest.abs.Ground;
-import com.vy.forest.abs.Tree;
+import com.vy.forest.interfaces.Ground;
+import com.vy.forest.interfaces.Tree;
 
 public class BlackSoil extends Ground
 {

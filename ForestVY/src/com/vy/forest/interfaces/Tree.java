@@ -1,4 +1,4 @@
-package com.vy.forest.abs;
+package com.vy.forest.interfaces;
 
 
 public abstract class Tree

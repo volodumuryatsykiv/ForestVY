@@ -1,8 +1,8 @@
 package com.vy.forest;
 
-import com.vy.forest.abs.Ground;
-import com.vy.forest.abs.Leaf;
-import com.vy.forest.abs.Tree;
+import com.vy.forest.interfaces.Ground;
+import com.vy.forest.interfaces.Leaf;
+import com.vy.forest.interfaces.Tree;
 import com.vy.forest.vo.BlackSoil;
 import com.vy.forest.vo.Oak;
 import com.vy.forest.vo.OakLeaf;

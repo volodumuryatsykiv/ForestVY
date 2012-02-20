@@ -3,8 +3,8 @@ package com.vy.forest.vo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vy.forest.abs.Leaf;
-import com.vy.forest.abs.Tree;
+import com.vy.forest.interfaces.Leaf;
+import com.vy.forest.interfaces.Tree;
 
 public class Oak extends Tree
 {
