@@ -1,6 +1,7 @@
 package com.vy.forest.vo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vy.forest.abs.Leaf;
 import com.vy.forest.abs.Tree;
@@ -12,7 +13,7 @@ public class Oak extends Tree
 	private float height;
 	private boolean isFruit;
 	private int id = 0;
-	private final ArrayList<Leaf> LeafList = new ArrayList<Leaf>();
+	private final List<Leaf> LeafList = new ArrayList<Leaf>();
 
 	public Oak(String inName, String inView, float inHeight, boolean isFruit,
 			int inId)

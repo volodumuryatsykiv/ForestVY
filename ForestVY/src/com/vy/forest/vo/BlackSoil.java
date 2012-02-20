@@ -1,6 +1,7 @@
 package com.vy.forest.vo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.vy.forest.abs.Ground;
 import com.vy.forest.abs.Tree;
@@ -9,7 +10,7 @@ public class BlackSoil extends Ground
 {
 	private float fertility;
 	private String type;
-	private final ArrayList<Tree> TreeList = new ArrayList<Tree>();
+	private final List<Tree> TreeList = new ArrayList<Tree>();
 
 	public BlackSoil(float fertility, String type)
 	{

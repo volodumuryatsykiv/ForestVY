@@ -13,8 +13,6 @@ public class Main
 	public static void main(String[] args)
 	{
 		Ground ground = new BlackSoil();
-		// ArrayList<Tree> Oak = new ArrayList<Tree>();
-		// ArrayList<Leaf> OakLeaf = new ArrayList<Leaf>();
 		Tree oak = new Oak();
 		Leaf oakLeaf = new OakLeaf();
 
