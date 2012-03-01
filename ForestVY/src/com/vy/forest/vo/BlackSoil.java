@@ -46,17 +46,75 @@ public class BlackSoil extends Ground
 	@Override
 	public void addTree(Tree tree)
 	{
-		tree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
-		TreeList.add(tree);
+		boolean isId = false;
+		Tree tempTree = new Oak();
+
+		for (int i = 0; i < TreeList.size(); i++)
+		{
+			tempTree = TreeList.get(i);
+
+			if (tempTree.getId() == tree.getId())
+			{
+				isId = true;
+			}
+		}
+
+		if (!isId)
+		{
+			TreeList.add(tree);
+		} else
+		{
+			System.out.println("Tree whit this Id (" + tree.getId()
+					+ ") is alreade exists");
+		}
 	}
 
 	@Override
-	public void addCoupleTree(Tree tree)
+	public void addCoupleTree(Tree tree, int inId[])
 	{
-		tree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
-		TreeList.add(tree);
-		tree = new Oak("Oak", "Leafs", 10.0f, false, TreeList.size() + 1);
-		TreeList.add(tree);
+		boolean isId = false;
+		Tree tempTree = new Oak();
+		int n;
+
+		if (TreeList.size() == 0)
+		{
+			tree = new Oak("Oak", inId[0]);
+			TreeList.add(tree);
+			if (inId[0] != inId[1])
+			{
+				tree = new Oak("Oak", inId[1]);
+				TreeList.add(tree);
+			} else
+			{
+				System.out.println("Leaf whit this Id (" + inId[1]
+						+ ") is alreade exists");
+			}
+		} else
+		{
+			n = TreeList.size();
+			for (int i = 0; i < inId.length; i++)
+			{
+				for (int j = 0; j < n; j++)
+				{
+					tempTree = TreeList.get(j);
+
+					if (tempTree.getId() == inId[i])
+					{
+						isId = true;
+					}
+				}
+				if (!isId)
+				{
+					tree = new Oak("Oak", inId[i]);
+					TreeList.add(tree);
+				} else
+				{
+					System.out.println("Leaf whit this Id (" + inId[i]
+							+ ") is alreade exists");
+				}
+				n++;
+			}
+		}
 	}
 
 	@Override

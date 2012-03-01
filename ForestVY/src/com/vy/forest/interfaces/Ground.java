@@ -1,11 +1,10 @@
 package com.vy.forest.interfaces;
 
-
 public abstract class Ground
 {
 	public abstract void addTree(Tree tree);
 
-	public abstract void addCoupleTree(Tree tree);
+	public abstract void addCoupleTree(Tree tree, int inID[]);
 
 	public abstract void removeAllTree();
 

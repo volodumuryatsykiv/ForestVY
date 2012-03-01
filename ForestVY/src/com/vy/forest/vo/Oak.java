@@ -85,6 +85,7 @@ public class Oak extends Tree
 		return this.view;
 	}
 
+	@Override
 	public void setId(int inId)
 	{
 		this.id = inId;
@@ -111,19 +112,75 @@ public class Oak extends Tree
 	@Override
 	public void addLeaf(Leaf leaf)
 	{
-		leaf = new OakLeaf("Green", LeafList.size() + 1);
-		LeafList.add(leaf);
+		boolean isId = false;
+		Leaf tempLeaf = new OakLeaf();
+
+		for (int i = 0; i < LeafList.size(); i++)
+		{
+			tempLeaf = LeafList.get(i);
+
+			if (tempLeaf.getId() == leaf.getId())
+			{
+				isId = true;
+			}
+		}
+
+		if (!isId)
+		{
+			LeafList.add(leaf);
+		} else
+		{
+			System.out.println("Leaf whit this Id (" + leaf.getId()
+					+ ") is alreade exists");
+		}
 	}
 
 	@Override
-	public void addCoupleLeaf(Leaf leaf)
+	public void addCoupleLeaf(Leaf leaf, int inId[])
 	{
-		leaf = new OakLeaf("Green", LeafList.size() + 1); // change id
-															// (LeafList.size()
-															// + 1)
-		LeafList.add(leaf);
-		leaf = new OakLeaf("Green", LeafList.size() + 1);
-		LeafList.add(leaf);
+		boolean isId = false;
+		Leaf tempLeaf = new OakLeaf();
+		int n;
+
+		if (LeafList.size() == 0)
+		{
+			leaf = new OakLeaf("Green", inId[0]);
+			LeafList.add(leaf);
+			if (inId[0] != inId[1])
+			{
+				leaf = new OakLeaf("Green", inId[1]);
+				LeafList.add(leaf);
+			} else
+			{
+				System.out.println("Leaf whit this Id (" + inId[1]
+						+ ") is alreade exists");
+			}
+		} else
+		{
+			n = LeafList.size();
+			for (int i = 0; i < inId.length; i++)
+			{
+				for (int j = 0; j < n; j++)
+				{
+					tempLeaf = LeafList.get(j);
+
+					if (tempLeaf.getId() == inId[i])
+					{
+						isId = true;
+					}
+				}
+				if (!isId)
+				{
+					leaf = new OakLeaf("Green", inId[i]);
+					LeafList.add(leaf);
+				} else
+				{
+					System.out.println("Leaf whit this Id (" + inId[i]
+							+ ") is alreade exists");
+				}
+				n++;
+			}
+		}
 	}
 
 	@Override

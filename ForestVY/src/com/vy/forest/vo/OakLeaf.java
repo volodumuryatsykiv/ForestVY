@@ -20,6 +20,11 @@ public class OakLeaf extends Leaf
 		this(inLeafColor, 1f, inId);
 	}
 
+	public OakLeaf(int inId)
+	{
+		this("Green", 1f, inId);
+	}
+
 	public OakLeaf()
 	{
 		this(" ", 0f, 0);
@@ -35,6 +40,7 @@ public class OakLeaf extends Leaf
 		return this.size;
 	}
 
+	@Override
 	public void setId(int inId)
 	{
 		this.id = inId;

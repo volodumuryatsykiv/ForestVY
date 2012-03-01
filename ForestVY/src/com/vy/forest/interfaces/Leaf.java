@@ -6,4 +6,6 @@ public abstract class Leaf
 	public abstract void draw();
 
 	public abstract int getId();
+
+	public abstract void setId(int inId);
 }
