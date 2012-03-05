@@ -10,7 +10,7 @@ public class BlackSoil extends Ground
 {
 	private float fertility;
 	private String type;
-	private final List<Tree> TreeList = new ArrayList<Tree>();
+	private List<Tree> TreeList = new ArrayList<Tree>();
 
 	public BlackSoil(float fertility, String type)
 	{
@@ -44,9 +44,15 @@ public class BlackSoil extends Ground
 	}
 
 	@Override
+	public void setTreeList(List<Tree> inTreeList)
+	{
+		this.TreeList = inTreeList;
+	}
+
+	@Override
 	public void addTree(Tree tree)
 	{
-		boolean isId = false;
+		boolean isTreeExist = false;
 		Tree tempTree = new Oak();
 
 		for (int i = 0; i < TreeList.size(); i++)
@@ -55,39 +61,39 @@ public class BlackSoil extends Ground
 
 			if (tempTree.getId() == tree.getId())
 			{
-				isId = true;
+				isTreeExist = true;
 			}
 		}
 
-		if (!isId)
+		if (!isTreeExist)
 		{
 			TreeList.add(tree);
 		} else
 		{
-			System.out.println("Tree whit this Id (" + tree.getId()
-					+ ") is alreade exists");
+			System.out.println("Tree with this Id (" + tree.getId()
+					+ ") is already exists");
 		}
 	}
 
 	@Override
 	public void addCoupleTree(Tree tree, int inId[])
 	{
-		boolean isId = false;
+		boolean isTreeExist = false;
 		Tree tempTree = new Oak();
 		int n;
 
 		if (TreeList.size() == 0)
 		{
-			tree = new Oak("Oak", inId[0]);
+			tree = new Oak(inId[0]);
 			TreeList.add(tree);
 			if (inId[0] != inId[1])
 			{
-				tree = new Oak("Oak", inId[1]);
+				tree = new Oak(inId[1]);
 				TreeList.add(tree);
 			} else
 			{
-				System.out.println("Leaf whit this Id (" + inId[1]
-						+ ") is alreade exists");
+				System.out.println("Leaf with this Id (" + inId[1]
+						+ ") is already exists");
 			}
 		} else
 		{
@@ -100,17 +106,17 @@ public class BlackSoil extends Ground
 
 					if (tempTree.getId() == inId[i])
 					{
-						isId = true;
+						isTreeExist = true;
 					}
 				}
-				if (!isId)
+				if (!isTreeExist)
 				{
-					tree = new Oak("Oak", inId[i]);
+					tree = new Oak(inId[i]);
 					TreeList.add(tree);
 				} else
 				{
-					System.out.println("Leaf whit this Id (" + inId[i]
-							+ ") is alreade exists");
+					System.out.println("Leaf with this Id (" + inId[i]
+							+ ") is already exists");
 				}
 				n++;
 			}

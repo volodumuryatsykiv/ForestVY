@@ -8,81 +8,70 @@ import com.vy.forest.interfaces.Tree;
 
 public class Oak extends Tree
 {
-	private String name;
-	private String view;
-	private float height;
-	private boolean isFruit;
+	private int height;
+	private int width;
+	private int age;
 	private int id = 0;
-	private final List<Leaf> LeafList = new ArrayList<Leaf>();
+	private List<Leaf> LeafList = new ArrayList<Leaf>();
 
-	public Oak(String inName, String inView, float inHeight, boolean isFruit,
-			int inId)
+	public Oak(int inId, int inHeight, int inWidth, int inAge)
 	{
-		this.name = inName;
-		this.view = inView;
-		this.height = inHeight;
-		this.isFruit = isFruit;
 		this.id = inId;
+		this.height = inHeight;
+		this.width = inWidth;
+		this.age = inAge;
 	}
 
-	public Oak(String inName, String inView, float inHeight, int inId)
+	public Oak(int inId)
 	{
-		this(inName, inView, inHeight, false, inId);
-	}
-
-	public Oak(String inName, String inView, int inId)
-	{
-		this(inName, inView, 1f, false, inId);
-	}
-
-	public Oak(String inName, int inId)
-	{
-		this(inName, " ", 1f, false, inId);
+		this(0, 0, 0, inId);
 	}
 
 	public Oak()
 	{
-		this(" ", " ", 0f, false, 0);
+		this(0, 0, 0, 0);
 	}
 
-	public void setFruit(boolean fruity)
+	@Override
+	public void setLeafList(List<Leaf> inLeafList)
 	{
-		this.isFruit = fruity;
+		this.LeafList = inLeafList;
 	}
 
-	public boolean isFruit()
+	@Override
+	public void setWidth(int inWidth)
 	{
-		return this.isFruit;
+		this.width = inWidth;
 	}
 
-	public void setHeight(float inHeight)
+	@Override
+	public float getWidth()
+	{
+		return this.width;
+	}
+
+	@Override
+	public void setHeight(int inHeight)
 	{
 		this.height = inHeight;
 	}
 
+	@Override
 	public float getHeight()
 	{
 		return this.height;
 	}
 
-	public void setName(String inName)
+	@Override
+	public void setAge(int inAge)
 	{
-		this.name = inName;
+		this.age = inAge;
 	}
 
-	public String getName()
+	@Override
+	public int getAge()
 	{
-		return this.name;
-	}
-
-	public void setView(String inView)
-	{
-		this.view = inView;
-	}
-
-	public String getView()
-	{
-		return this.view;
+		return this.age;
 	}
 
 	@Override
@@ -112,7 +101,7 @@ public class Oak extends Tree
 	@Override
 	public void addLeaf(Leaf leaf)
 	{
-		boolean isId = false;
+		boolean isLeafExist = false;
 		Leaf tempLeaf = new OakLeaf();
 
 		for (int i = 0; i < LeafList.size(); i++)
@@ -121,39 +110,39 @@ public class Oak extends Tree
 
 			if (tempLeaf.getId() == leaf.getId())
 			{
-				isId = true;
+				isLeafExist = true;
 			}
 		}
 
-		if (!isId)
+		if (!isLeafExist)
 		{
 			LeafList.add(leaf);
 		} else
 		{
-			System.out.println("Leaf whit this Id (" + leaf.getId()
-					+ ") is alreade exists");
+			System.out.println("Leaf with this Id (" + leaf.getId()
+					+ ") is already exists");
 		}
 	}
 
 	@Override
 	public void addCoupleLeaf(Leaf leaf, int inId[])
 	{
-		boolean isId = false;
+		boolean isLeafExist = false;
 		Leaf tempLeaf = new OakLeaf();
 		int n;
 
 		if (LeafList.size() == 0)
 		{
-			leaf = new OakLeaf("Green", inId[0]);
+			leaf = new OakLeaf(inId[0]);
 			LeafList.add(leaf);
 			if (inId[0] != inId[1])
 			{
-				leaf = new OakLeaf("Green", inId[1]);
+				leaf = new OakLeaf(inId[1]);
 				LeafList.add(leaf);
 			} else
 			{
-				System.out.println("Leaf whit this Id (" + inId[1]
-						+ ") is alreade exists");
+				System.out.println("Leaf with this Id (" + inId[1]
+						+ ") is already exists");
 			}
 		} else
 		{
@@ -166,17 +155,17 @@ public class Oak extends Tree
 
 					if (tempLeaf.getId() == inId[i])
 					{
-						isId = true;
+						isLeafExist = true;
 					}
 				}
-				if (!isId)
+				if (!isLeafExist)
 				{
-					leaf = new OakLeaf("Green", inId[i]);
+					leaf = new OakLeaf(inId[i]);
 					LeafList.add(leaf);
 				} else
 				{
-					System.out.println("Leaf whit this Id (" + inId[i]
-							+ ") is alreade exists");
+					System.out.println("Leaf with this Id (" + inId[i]
+							+ ") is already exists");
 				}
 				n++;
 			}
@@ -218,11 +207,10 @@ public class Oak extends Tree
 	{
 		Leaf tempLeaf = new OakLeaf();
 
-		System.out.println("Name is " + this.name);
-		System.out.println("View is " + this.view);
-		System.out.println("Height is " + this.height);
-		System.out.println("Fruity is " + this.isFruit);
 		System.out.println("ID is " + this.id);
+		System.out.println("Height is " + this.height);
+		System.out.println("Width is " + this.width);
+		System.out.println("Age is " + this.age);
 
 		System.out.println("There are that leaves on this tree: ");
 

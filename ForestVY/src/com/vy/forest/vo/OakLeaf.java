@@ -4,40 +4,60 @@ import com.vy.forest.interfaces.Leaf;
 
 public class OakLeaf extends Leaf
 {
-	private String leafColor = "";
-	private float size;
+	private String color = "";
+	private int height;
+	private int width;
 	private int id = 0;
 
-	public OakLeaf(String inLeafColor, float inSize, int inId)
+	public OakLeaf(String inColor, int inHeight, int inWidth, int inId)
 	{
-		this.leafColor = inLeafColor;
-		this.size = inSize;
+		this.color = inColor;
+		this.height = inHeight;
+		this.width = inWidth;
 		this.id = inId;
-	}
-
-	public OakLeaf(String inLeafColor, int inId)
-	{
-		this(inLeafColor, 1f, inId);
 	}
 
 	public OakLeaf(int inId)
 	{
-		this("Green", 1f, inId);
+		this("Green", 1, 1, inId);
 	}
 
 	public OakLeaf()
 	{
-		this(" ", 0f, 0);
+		this(" ", 0, 0, 1);
 	}
 
-	public void setSize(float size)
+	@Override
+	public void setHeight(int inHeight)
 	{
-		this.size = size;
+		this.height = inHeight;
 	}
 
-	public float getSize()
+	public float getHeight()
 	{
-		return this.size;
+		return this.height;
+	}
+
+	@Override
+	public void setWidth(int inWidth)
+	{
+		this.width = inWidth;
+	}
+
+	public float getWidth()
+	{
+		return this.width;
+	}
+
+	@Override
+	public void setColor(String inColor)
+	{
+		this.color = inColor;
+	}
+
+	public String getColor()
+	{
+		return this.color;
 	}
 
 	@Override
@@ -54,20 +74,21 @@ public class OakLeaf extends Leaf
 
 	public void setLeafColor(String inLeafColor)
 	{
-		this.leafColor = inLeafColor;
+		this.color = inLeafColor;
 	}
 
 	public String getLeafColor()
 	{
-		return this.leafColor;
+		return this.color;
 	}
 
 	@Override
 	public void draw()
 	{
-		System.out.println("Color is " + this.leafColor);
-		System.out.println("Size is " + this.size);
 		System.out.println("ID is " + this.id);
+		System.out.println("Color is " + this.color);
+		System.out.println("Height is " + this.height);
+		System.out.println("width is " + this.width);
 		System.out.println();
 	}
 }

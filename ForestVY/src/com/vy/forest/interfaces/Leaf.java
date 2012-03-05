@@ -7,5 +7,11 @@ public abstract class Leaf
 
 	public abstract int getId();
 
+	public abstract void setHeight(int inHeight);
+
+	public abstract void setWidth(int inWidth);
+
+	public abstract void setColor(String inColor);
+
 	public abstract void setId(int inId);
 }
