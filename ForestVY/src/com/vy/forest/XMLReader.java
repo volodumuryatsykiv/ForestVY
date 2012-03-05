@@ -48,6 +48,9 @@ public class XMLReader
 				boolean isLeafHeight = false;
 				boolean isLeafWidth = false;
 				boolean isLeafColor = false;
+				String leafColor = "";
+				int leafWidth = 0;
+				int leafHeight = 0;
 
 				@Override
 				public void startElement(String uri, String localName,
@@ -58,49 +61,31 @@ public class XMLReader
 					{
 						isTreeBegin = true;
 						oak = new Oak();
-					}
-
-					if (qName.equalsIgnoreCase("ID"))
+					} else if (qName.equalsIgnoreCase("ID"))
 					{
 						isTreeId = true;
-					}
-
-					if (qName.equalsIgnoreCase("HEIGHT") && !isLeafBegin)
+					} else if (qName.equalsIgnoreCase("HEIGHT") && !isLeafBegin)
 					{
 						isTreeHeight = true;
-					}
-
-					if (qName.equalsIgnoreCase("WIDTH") && !isLeafBegin)
+					} else if (qName.equalsIgnoreCase("WIDTH") && !isLeafBegin)
 					{
 						isTreeWidth = true;
-					}
-
-					if (qName.equalsIgnoreCase("AGE"))
+					} else if (qName.equalsIgnoreCase("AGE"))
 					{
 						isTreeAge = true;
-					}
-
-					if (qName.equalsIgnoreCase("LEAFCOUNT"))
+					} else if (qName.equalsIgnoreCase("LEAFCOUNT"))
 					{
 						isLeafCount = true;
-					}
-
-					if (qName.equalsIgnoreCase("LEAF") && !isLeafBegin)
+					} else if (qName.equalsIgnoreCase("LEAF") && !isLeafBegin)
 					{
 						isLeafBegin = true;
-					}
-
-					if (qName.equalsIgnoreCase("Color"))
+					} else if (qName.equalsIgnoreCase("Color"))
 					{
 						isLeafColor = true;
-					}
-
-					if (qName.equalsIgnoreCase("HEIGHT") && isLeafBegin)
+					} else if (qName.equalsIgnoreCase("HEIGHT") && isLeafBegin)
 					{
 						isLeafHeight = true;
-					}
-
-					if (qName.equalsIgnoreCase("WIDTH") && isLeafBegin)
+					} else if (qName.equalsIgnoreCase("WIDTH") && isLeafBegin)
 					{
 						isLeafWidth = true;
 					}
@@ -121,9 +106,7 @@ public class XMLReader
 								.valueOf((new String(ch, start, length))));
 
 						isTreeId = false;
-					}
-
-					if (isTreeHeight)
+					} else if (isTreeHeight)
 					{
 						System.out.println("TreeHeight : "
 								+ new String(ch, start, length));
@@ -131,9 +114,7 @@ public class XMLReader
 						oak.setHeight(Integer.valueOf((new String(ch, start,
 								length))));
 						isTreeHeight = false;
-					}
-
-					if (isTreeWidth)
+					} else if (isTreeWidth)
 					{
 						System.out.println("TreeWidth : "
 								+ new String(ch, start, length));
@@ -142,9 +123,7 @@ public class XMLReader
 								length))));
 
 						isTreeWidth = false;
-					}
-
-					if (isTreeAge)
+					} else if (isTreeAge)
 					{
 						System.out.println("TreeAge : "
 								+ new String(ch, start, length));
@@ -153,9 +132,7 @@ public class XMLReader
 								length))));
 
 						isTreeAge = false;
-					}
-
-					if (isLeafCount)
+					} else if (isLeafCount)
 					{
 						System.out.println("LeafCount : "
 								+ new String(ch, start, length));
@@ -164,47 +141,51 @@ public class XMLReader
 								length)));
 
 						isLeafCount = false;
-					}
-
-					if (isLeafColor)
+					} else if (isLeafColor)
 					{
 						System.out.println("LeafColor :"
 								+ new String(ch, start, length));
 
-						oakLeaf.setColor(new String(ch, start, length));
+						leafColor = new String(ch, start, length);
+						oakLeaf.setColor(leafColor);
 
 						isLeafColor = false;
-					}
-
-					if (isLeafHeight)
+					} else if (isLeafHeight)
 					{
 						System.out.println("LeafHeight : "
 								+ new String(ch, start, length));
 
-						oakLeaf.setHeight(Integer.valueOf((new String(ch,
-								start, length))));
+						leafHeight = Integer.valueOf((new String(ch, start,
+								length)));
+						oakLeaf.setHeight(leafHeight);
 
 						isLeafHeight = false;
-					}
-
-					if (isLeafWidth)
+					} else if (isLeafWidth)
 					{
+						List<Leaf> tempLeafList = new ArrayList();
+
 						System.out.println("LeafWidth : "
 								+ new String(ch, start, length));
 
-						oakLeaf.setWidth(Integer.valueOf((new String(ch, start,
-								length))));
+						leafWidth = Integer.valueOf((new String(ch, start,
+								length)));
+						oakLeaf.setWidth(leafWidth);
 
-						for (int i = oak.getId() + 1; i <= LeafCount; i++)
+						for (int i = oak.getId() + 1; i < LeafCount
+								+ oak.getId() + 1; i++)
 						{
 							oakLeaf.setId(i);
 							LeafList.add(oakLeaf);
+							oakLeaf = new OakLeaf(leafColor, leafHeight,
+									leafWidth);
 						}
 
-						oak.setLeafList(LeafList);
+						tempLeafList.addAll(LeafList);
+						oak.setLeafList(tempLeafList);
 						TreeList.add(oak);
 						oak = new Oak();
 						oakLeaf = new OakLeaf();
+						LeafList.clear();
 
 						isLeafWidth = false;
 						isTreeBegin = false;

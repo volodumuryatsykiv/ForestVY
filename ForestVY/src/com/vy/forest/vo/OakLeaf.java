@@ -17,6 +17,11 @@ public class OakLeaf extends Leaf
 		this.id = inId;
 	}
 
+	public OakLeaf(String inColor, int inHeight, int inWidth)
+	{
+		this(inColor, inHeight, inWidth, 0);
+	}
+
 	public OakLeaf(int inId)
 	{
 		this("Green", 1, 1, inId);
