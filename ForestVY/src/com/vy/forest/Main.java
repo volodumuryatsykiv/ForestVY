@@ -32,6 +32,7 @@ public class Main
 					new File(
 							"d:\\Java Projects\\Git\\ForestVY\\ForestVY\\assets\\file+.xml"),
 					treeParser);
+			ground.setTreeList(treeParser.getOakList());
 		} catch (Exception e)
 		{
 			e.printStackTrace();
