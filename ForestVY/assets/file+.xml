@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<root>
+	<tree>
+		<id>000001</id>
+		<class>Oak</class>
+		<height measure="meters">10</height>
+		<width measure="centimetres">120</width>
+		<age measure="years">5</age>
+		<leafDetails>
+			<leafCount>20</leafCount>
+			<leaf>
+				<!-- id is tree id + leaf number -->
+				<class>Oak Leaf</class>
+				<color>00ff00</color>
+				<height measure="centimetres">5</height>
+				<width measure="centimetres">8</width>
+			</leaf>
+		</leafDetails>
+	</tree>
+	<tree>
+		<id>000002</id>
+		<class>Oak</class>
+		<height measure="meters">8</height>
+		<width measure="centimetres">100</width>
+		<age measure="years">3</age>
+		<leafDetails>
+			<leafCount>15</leafCount>
+			<leaf>
+				<!-- id is tree id + leaf number -->
+				<class>Oak Leaf</class>
+				<color>00fd00</color>
+				<height measure="centimetres">3</height>
+				<width measure="centimetres">5</width>
+			</leaf>
+		</leafDetails>
+	</tree>
+	<tree>
+		<id>000003</id>
+		<class>Oak</class>
+		<height measure="meters">4</height>
+		<width measure="centimetres">60</width>
+		<age measure="years">1</age>
+		<leafDetails>
+			<leafCount>10</leafCount>
+			<leaf>
+				<!-- id is tree id + leaf number -->
+				<class>Oak Leaf</class>
+				<color>00f900</color>
+				<height measure="centimetres">2</height>
+				<width measure="centimetres">3</width>
+			</leaf>
+		</leafDetails>
+	</tree>
+</root>
