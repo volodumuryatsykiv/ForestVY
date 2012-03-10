@@ -21,10 +21,10 @@ public class TreeParser extends DefaultHandler
 	private final List<Tree> TreeList = new ArrayList<Tree>();
 	private String thisString = "";
 	private String leafColor = "";
-	boolean isTreeBegin = false;
-	boolean isLeafBegin = false;
-	int leafWidth = 0;
-	int leafHeight = 0;
+	private boolean isTreeBegin = false;
+	private boolean isLeafBegin = false;
+	private int leafWidth = 0;
+	private int leafHeight = 0;
 
 	public List getOakList()
 	{
