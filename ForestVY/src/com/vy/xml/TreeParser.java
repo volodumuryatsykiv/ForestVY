@@ -17,18 +17,17 @@ public class TreeParser extends DefaultHandler
 	private Tree oak = new Oak();
 	private Leaf oakLeaf = new OakLeaf();
 	private int LeafCount = 0;
-	private final List<Leaf> LeafList = new ArrayList<Leaf>();
-	private final List<Tree> TreeList = new ArrayList<Tree>();
+	private final List<Leaf> leafList = new ArrayList<Leaf>();
+	private final List<Tree> treeList = new ArrayList<Tree>();
 	private String thisString = "";
 	private String leafColor = "";
 	private int leafWidth = 0;
 	private int leafHeight = 0;
-	private String currentLevel = "";
-	private String value = new String();
+	private int currentLevel = -1;
 
 	public List getOakList()
 	{
-		return TreeList;
+		return treeList;
 	}
 
 	@Override
@@ -36,6 +35,14 @@ public class TreeParser extends DefaultHandler
 			Attributes attributes) throws SAXException
 	{
 		thisString = qName;
+
+		if (thisString.equalsIgnoreCase("Tree"))
+		{
+			currentLevel = 0;
+		} else if (thisString.equalsIgnoreCase("Leaf"))
+		{
+			currentLevel = 1;
+		}
 	}
 
 	@Override
@@ -43,9 +50,36 @@ public class TreeParser extends DefaultHandler
 			throws SAXException
 	{
 		thisString = "";
+
+		if (qName.equalsIgnoreCase("Tree"))
+		{
+			treeList.add(oak);
+			oak = new Oak();
+		} else if (qName.equalsIgnoreCase("Leaf"))
+		{
+			List<Leaf> tempLeafList = new ArrayList();
+			Leaf tempLeaf = new OakLeaf();
+			oakLeaf.setId(oak.getId() + 1);
+			leafList.add(oakLeaf);
+
+			tempLeaf = leafList.get(leafList.size() - 1);
+
+			for (int i = oak.getId() + 2; i < LeafCount + oak.getId() + 1; i++)
+			{
+				oakLeaf = new OakLeaf(tempLeaf.getColor(),
+						tempLeaf.getHeight(), tempLeaf.getWidth());
+				oakLeaf.setId(i);
+				leafList.add(oakLeaf);
+			}
+
+			tempLeafList.addAll(leafList);
+			oak.setLeafList(tempLeafList);
+			oakLeaf = new OakLeaf();
+			leafList.clear();
+		}
 	}
 
-	public void parseTree(String inQname)
+	public void parseTree(String inQname, String value)
 	{
 		if (inQname.equalsIgnoreCase("ID"))
 		{
@@ -77,12 +111,9 @@ public class TreeParser extends DefaultHandler
 			System.out.println("LeafCount : " + value);
 			LeafCount = Integer.valueOf(value);
 		}
-
-		// TreeList.add(oak);
-		// oak = new Oak();
 	}
 
-	public void parseLeaf(String inQname)
+	public void parseLeaf(String inQname, String value)
 	{
 		if (thisString.equalsIgnoreCase("Color"))
 		{
@@ -99,25 +130,10 @@ public class TreeParser extends DefaultHandler
 
 		} else if (thisString.equalsIgnoreCase("WIDTH"))
 		{
-			List<Leaf> tempLeafList = new ArrayList();
 
 			System.out.println("LeafWidth : " + value);
 			leafWidth = Integer.valueOf(value);
 			oakLeaf.setWidth(leafWidth);
-
-			for (int i = oak.getId() + 1; i < LeafCount + oak.getId() + 1; i++)
-			{
-				oakLeaf.setId(i);
-				LeafList.add(oakLeaf);
-				oakLeaf = new OakLeaf(leafColor, leafHeight, leafWidth);
-			}
-
-			tempLeafList.addAll(LeafList);
-			oak.setLeafList(tempLeafList);
-			TreeList.add(oak);
-			oak = new Oak();
-			oakLeaf = new OakLeaf();
-			LeafList.clear();
 		}
 
 		// Tree tempOak = new Oak();
@@ -139,21 +155,12 @@ public class TreeParser extends DefaultHandler
 	public void characters(char ch[], int start, int length)
 			throws SAXException
 	{
-		value = new String(ch, start, length).trim();
-		if (thisString.equalsIgnoreCase("Tree"))
+		if (currentLevel == 0)
 		{
-			currentLevel = "Tree";
-		} else if (thisString.equalsIgnoreCase("Leaf"))
+			parseTree(thisString, new String(ch, start, length).trim());
+		} else if (currentLevel == 1)
 		{
-			currentLevel = "Leaf";
-		}
-
-		if (currentLevel.equalsIgnoreCase("Tree"))
-		{
-			parseTree(thisString);
-		} else if (currentLevel.equalsIgnoreCase("Leaf"))
-		{
-			parseLeaf(thisString);
+			parseLeaf(thisString, new String(ch, start, length).trim());
 		}
 	}
 

@@ -38,7 +38,8 @@ public class OakLeaf extends Leaf
 		this.height = inHeight;
 	}
 
-	public float getHeight()
+	@Override
+	public int getHeight()
 	{
 		return this.height;
 	}
@@ -49,7 +50,8 @@ public class OakLeaf extends Leaf
 		this.width = inWidth;
 	}
 
-	public float getWidth()
+	@Override
+	public int getWidth()
 	{
 		return this.width;
 	}
@@ -60,6 +62,7 @@ public class OakLeaf extends Leaf
 		this.color = inColor;
 	}
 
+	@Override
 	public String getColor()
 	{
 		return this.color;
