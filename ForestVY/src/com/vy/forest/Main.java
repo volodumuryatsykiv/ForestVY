@@ -1,5 +1,10 @@
 package com.vy.forest;
 
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
 import com.vy.forest.interfaces.Ground;
 import com.vy.forest.interfaces.Leaf;
 import com.vy.forest.interfaces.Tree;
@@ -15,6 +20,26 @@ public class Main
 		Ground ground = new BlackSoil();
 		Tree oak = new Oak();
 		Leaf oakLeaf = new OakLeaf();
+
+		try
+		{
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			SAXParser parser = factory.newSAXParser();
+			TreeParser treeParser = new TreeParser();
+
+			parser.parse(
+					new File(
+							"d:\\Java Projects\\Git\\ForestVY\\ForestVY\\assets\\file+.xml"),
+					treeParser);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		// XMLReader reader = new XMLReader();
+		// reader.setOak();
+		//
+		// ground.setTreeList(reader.getOak());
+
 		// Random randId = new Random();
 		// int[] ID = new int[2];
 		//
@@ -76,13 +101,5 @@ public class Main
 		// System.out.println("Removed all tree: ");
 		// ground.removeAllTree();
 		// ground.draw();
-
-		XMLReader reader = new XMLReader();
-		reader.setOak();
-
-		ground.setTreeList(reader.getOak());
-
-		System.out.println();
-		System.out.println();
 	}
 }

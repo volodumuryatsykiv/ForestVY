@@ -196,7 +196,9 @@ public class XMLReader
 				}
 			};
 
-			saxParser.parse("d:\\file+.xml", handler);
+			saxParser
+					.parse("d:\\Java Projects\\Git\\ForestVY\\ForestVY\\assets\\file+.xml",
+							handler);
 
 		} catch (Exception e)
 		{
